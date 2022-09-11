@@ -1,0 +1,59 @@
+@use "./_colors.scss" as c;
+
+@use "functions.scss" as f;
+
+@mixin article-color($color, $border-color, $font-size) {
+  text-align: center;
+  color: $color;
+  border: f.rem(1) solid $border-color;
+  font-size: $font-size;
+}
+
+:root {
+  font-size: 100%;
+}
+
+* {
+  padding: 0.5em;
+  margin: 0;
+  box-sizing: border-box;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  border: f.rem(1.5) solid c.$primary-color;
+  
+    & .head1 {
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+    color: c.$tertiary-color;
+    text-decoration: underline;
+    text-decoration-color: c.$secondary-color;
+  }
+    .head2{
+    padding: 1rem;
+    border: f.rem(1) solid c.$primary-color;
+
+    &_head1{
+      @extend .head1;
+      @extend .head2;
+      text-decoration: none;
+    }
+  }
+
+  & section {
+    display: flex;
+
+    .article-blue {
+      @include article-color(c.$secondary-color, c.$tertiary-color, 1rem);
+    }
+    .article-red {
+      @include article-color(c.$primary-color, c.$tertiary-color, 1rem);
+    }
+    .article-green {
+      @include article-color(c.$tertiary-color, c.$secondary-color, 1.5rem);
+    }
+  }
+}
